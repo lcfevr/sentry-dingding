@@ -9,7 +9,7 @@ setup(
     version='0.0.7',
     author='lcfevr',
     author_email='lcfevr@163.com',
-    url=' https://github.com/lcfevr/sentry-dingding.git',
+    url='https://github.com/lcfevr/sentry-dingding-feelys',
     description='A Sentry extension which send errors stats to DingDing',
     long_description=long_description,
     long_description_content_type="text/markdown",
