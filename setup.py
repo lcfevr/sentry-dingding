@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="sentry-dingding-feelys",
-    version='0.0.7',
+    version='0.0.8',
     author='lcfevr',
     author_email='lcfevr@163.com',
     url='https://github.com/lcfevr/sentry-dingding-feelys',
