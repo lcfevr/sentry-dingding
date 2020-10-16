@@ -54,12 +54,29 @@ class DingDingPlugin(NotificationPlugin):
         send_url = DingTalk_API.format(token=access_token)
         title = u"New alert from {}".format(event.project.slug)
 
+        # http://a.example.com/ruibogyl/feely/issues/27/events/4386/
+        detail_url = group.get_absolute_url()
+        # 分割字符串
+        url_arr = detail_url.split('/')
+        # 取到`issues`后一个索引的id值 e.g. 27
+        issue_id = url_arr[url_arr.find('issues') + 1]
 
+        # 获取上报来源模块的url
+        issueData = request.get(
+            url="http://web-middle.ruibogyl.work/sentry/findIssueTargetUrl",
+            headers={"Content-Type": "application/json"},
+            data=json.dumps({
+                id: issue_id
+            }).json()
+
+        url = issueData['url']
+
+        # 根据来源模块的url获取钉钉责任人
         response = requests.get(
             url="http://web-middle.ruibogyl.work/sentry/getDingDingAssignee",
             headers={"Content-Type": "application/json"},
             data=json.dumps({
-                url: event.url
+                url: url
             })
           ).json()
 
