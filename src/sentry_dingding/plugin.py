@@ -62,25 +62,26 @@ class DingDingPlugin(NotificationPlugin):
         issue_id = url_arr[url_arr.find('issues') + 1]
 
         # 获取上报来源模块的url
-        issueData = request.get(
+        issueData = requests.get(
             url="http://web-middle.ruibogyl.work/sentry/findIssueTargetUrl",
             headers={"Content-Type": "application/json"},
             data=json.dumps({
                 id: issue_id
-            }).json()
+            })).json()
 
-        url = issueData['url']
+        assigneeUrl = issueData['url']
+        print(assigneeUrl)
 
         # 根据来源模块的url获取钉钉责任人
         response = requests.get(
             url="http://web-middle.ruibogyl.work/sentry/getDingDingAssignee",
             headers={"Content-Type": "application/json"},
             data=json.dumps({
-                url: url
+                url: assigneeUrl
             })
-          ).json()
+        ).json()
 
-
+        print(response['phone'])
 
         data = {
             "msgtype": "markdown",
@@ -89,20 +90,19 @@ class DingDingPlugin(NotificationPlugin):
                 "text": u"#### {title} \n > {message} [href]({url}) @{phone}".format(
                     title=title,
                     message=event.message,
-                    url=u"{}events/{}/".format(group.get_absolute_url(), event.id),
+                    url=u"{}events/{}/".format(
+                        group.get_absolute_url(), event.id),
                     phone=response['phone']
                 ),
 
             },
             "at": {
-              "atMobiles": [
-                  response['phone']
-              ],
-              "isAtAll": false
-          }
+                "atMobiles": [
+                    response['phone']
+                ],
+                "isAtAll": False
+            }
         }
-
-
 
         requests.post(
             url=send_url,
