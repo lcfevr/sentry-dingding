@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="sentry-dingding-feelys",
-    version='0.0.5',
+    version='0.0.7',
     author='lcfevr',
     author_email='lcfevr@163.com',
     url=' https://github.com/lcfevr/sentry-dingding.git',
@@ -29,6 +29,7 @@ setup(
         ]
     },
     classifiers=[
+        'Programming Language :: Python :: 2.7',
         "License :: OSI Approved :: MIT License",
     ]
 )
