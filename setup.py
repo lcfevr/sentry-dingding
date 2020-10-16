@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-with open("README.md", "r", encoding='utf-8') as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name="sentry-dingding-feelys",
-    version='0.0.4',
+    version='0.0.6',
     author='lcfevr',
     author_email='lcfevr@163.com',
     url=' https://github.com/lcfevr/sentry-dingding.git',
@@ -29,7 +29,7 @@ setup(
         ]
     },
     classifiers=[
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 2.7',
         "License :: OSI Approved :: MIT License",
     ]
 )
