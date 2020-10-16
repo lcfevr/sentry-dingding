@@ -66,7 +66,7 @@ class DingDingPlugin(NotificationPlugin):
             url="http://web-middle.ruibogyl.work/sentry/findIssueTargetUrl",
             headers={"Content-Type": "application/json"},
             data=json.dumps({
-                id: issue_id
+                "id": issue_id
             })).json()
 
         assigneeUrl = issueData['url']
@@ -77,7 +77,7 @@ class DingDingPlugin(NotificationPlugin):
             url="http://web-middle.ruibogyl.work/sentry/getDingDingAssignee",
             headers={"Content-Type": "application/json"},
             data=json.dumps({
-                url: assigneeUrl
+                "url": assigneeUrl
             })
         ).json()
 
